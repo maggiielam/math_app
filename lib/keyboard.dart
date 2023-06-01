@@ -36,16 +36,15 @@ class _KeyboardState extends State<Keyboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : GridView.count(
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5,
-              crossAxisCount: 5, // will change eventually
-              children: keys,
-            ),
-      // floatingActionButton: FloatingActionButton(onPressed: () => dataLoad()),
-    );
+    return _isLoading
+        ? const Center(child: CircularProgressIndicator())
+        : GridView.count(
+            shrinkWrap: true,
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 5,
+            crossAxisCount: 10, // will change eventually
+            children: keys,
+          );
+    // floatingActionButton: FloatingActionButton(onPressed: () => dataLoad();
   }
 }

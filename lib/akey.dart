@@ -100,7 +100,7 @@ Future<List<AKey>> getInitial() async {
   List<AKey> keys = await getConfig();
   if (keys.isEmpty) {
     List<AKey> newKeys = [];
-    int n = 10;
+    int n = 40;
     // subject to change based on screen ratio, etc
     for (int i = 0; i < n; i++) {
       newKeys.add(AKey(

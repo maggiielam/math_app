@@ -50,17 +50,28 @@ class _EditKeysState extends State<EditKeys> {
     return Scaffold(
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
-          : ReorderableGridView.count(
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5,
-              crossAxisCount: 5, // will change eventually
-              children: keys,
-              onReorder: (oldIndex, newIndex) {
-                setState(() {
-                  final element = keys.removeAt(oldIndex);
-                  keys.insert(newIndex, element);
-                });
-              },
+          : Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(50.0),
+                    child: ReorderableGridView.count(
+                      shrinkWrap: true,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5,
+                      crossAxisCount: 10, // will change eventually
+                      children: keys,
+                      onReorder: (oldIndex, newIndex) {
+                        setState(() {
+                          final element = keys.removeAt(oldIndex);
+                          keys.insert(newIndex, element);
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: saveData,

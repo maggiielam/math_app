@@ -16,8 +16,19 @@ class Default extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(child: Input()),
-        const Expanded(child: Keyboard()),
+        Expanded(flex: 1, child: Input()),
+        const Expanded(
+            flex: 2,
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Keyboard(),
+                ),
+              ],
+            ))),
       ],
     );
   }
