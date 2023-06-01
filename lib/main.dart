@@ -1,20 +1,78 @@
 import 'package:flutter/material.dart';
+import 'default.dart';
+import 'editkeys.dart';
+import 'akey.dart';
 
-import 'src/app.dart';
-import 'src/settings/settings_controller.dart';
-import 'src/settings/settings_service.dart';
+void main() => runApp(MyApp());
 
-void main() async {
-  // Set up the SettingsController, which will glue user settings to multiple
-  // Flutter Widgets.
-  final settingsController = SettingsController(SettingsService());
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  // Load the user's preferred theme while the splash screen is displayed.
-  // This prevents a sudden theme change when the app is first displayed.
-  await settingsController.loadSettings();
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Ritvik\'s App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const MyHomePage(title: 'Ritvik\'s App'),
+    );
+  }
+}
 
-  // Run the app and pass in the SettingsController. The app listens to the
-  // SettingsController for changes, then passes it further down to the
-  // SettingsView.
-  runApp(MyApp(settingsController: settingsController));
+class MyHomePage extends StatefulWidget {
+  final String title;
+  const MyHomePage({super.key, required this.title});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  var index = 0;
+  @override
+  Widget build(BuildContext context) {
+    Widget page = const Default();
+    if (index == 0) {
+      page = const Default();
+    } else if (index == 1) {
+      page = const EditKeys();
+    }
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: [
+          // edit button -> goes to editpage (editkeys.dart)
+          Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: IconButton(
+                icon: const Icon(Icons.edit),
+                onPressed: () {
+                  if (index == 0) {
+                    setState(() => index = 1);
+                  } else if (index == 1) {
+                    setState(() => index = 0);
+                  }
+                },
+              )),
+          // refresh button -> clears the data, only available on edit page
+          Visibility(
+            visible: index == 1,
+            child: Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: IconButton(
+                  icon: const Icon(Icons.refresh),
+                  onPressed: () {
+                    clear();
+                    setState(() => index = 0);
+                  },
+                )),
+          ),
+        ],
+      ),
+      // etiher the default page or the edit page
+      body: page,
+    );
+  }
 }
