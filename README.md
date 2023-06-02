@@ -1,4 +1,4 @@
-# math_app_01
+# math_app
 
 A new Flutter project.
 
