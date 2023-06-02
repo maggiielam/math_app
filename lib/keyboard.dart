@@ -42,7 +42,7 @@ class _KeyboardState extends State<Keyboard> {
             shrinkWrap: true,
             crossAxisSpacing: 5,
             mainAxisSpacing: 5,
-            crossAxisCount: 10, // will change eventually
+            crossAxisCount: 5, // will change eventually
             children: keys,
           );
     // floatingActionButton: FloatingActionButton(onPressed: () => dataLoad();

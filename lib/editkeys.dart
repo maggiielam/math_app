@@ -60,7 +60,7 @@ class _EditKeysState extends State<EditKeys> {
                       shrinkWrap: true,
                       crossAxisSpacing: 5,
                       mainAxisSpacing: 5,
-                      crossAxisCount: 10, // will change eventually
+                      crossAxisCount: 5, // will change eventually
                       children: keys,
                       onReorder: (oldIndex, newIndex) {
                         setState(() {
