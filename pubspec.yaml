@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.18
   reorderable_grid_view: ^2.2.6
+  flutter_math_fork: ^0.7.1
 
 dev_dependencies:
   flutter_test:

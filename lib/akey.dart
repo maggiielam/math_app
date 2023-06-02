@@ -1,6 +1,10 @@
 import 'dart:convert';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'keyfunct.dart';
+import 'main.dart';
+import 'globals.dart' as gs;
 
 class AKey extends StatelessWidget {
   /// The most basic wdiget of the app
@@ -51,7 +55,9 @@ class AKey extends StatelessWidget {
         shape: shapes[shape],
         primary: color,
       ),
-      onPressed: () {},
+      onPressed: () {
+        keyFunct(int.parse(keyValue));
+      },
       child: Text(keyFace),
     );
   }
@@ -67,9 +73,9 @@ void saveConfig(List<AKey> key) async {
   prefs.setStringList('buttonConfig', buttonStrings);
 }
 
-void clear() {
+void clearKeyConfig() {
   /// Clears all past data in shared preferences (the main storage)
-  SharedPreferences.getInstance().then((prefs) => prefs.clear());
+  SharedPreferences.getInstance().then((prefs) => prefs.remove('buttonConfig'));
 }
 
 Future<List<AKey>> getConfig() async {
@@ -100,12 +106,12 @@ Future<List<AKey>> getInitial() async {
   List<AKey> keys = await getConfig();
   if (keys.isEmpty) {
     List<AKey> newKeys = [];
-    int n = 40;
+    int n = gs.keys.length;
     // subject to change based on screen ratio, etc
     for (int i = 0; i < n; i++) {
       newKeys.add(AKey(
         color: Colors.blue,
-        keyFace: i.toString(),
+        keyFace: gs.keys[i],
         keyValue: i.toString(),
         key: ValueKey(i.toString()),
         shape: "rect",

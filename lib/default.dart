@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'keyboard.dart';
-import 'input.dart';
+import 'textfield.dart';
+import 'main.dart';
 
 class Default extends StatelessWidget {
   ///
@@ -16,7 +18,7 @@ class Default extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(flex: 1, child: Input()),
+        Expanded(flex: 1, child: Textfield()),
         const Expanded(
             flex: 2,
             child: Center(

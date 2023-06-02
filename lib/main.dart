@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'default.dart';
 import 'editkeys.dart';
 import 'akey.dart';
+
+// class AppModel extends ChangeNotifier {
+//   List<String> _keys;
+//   List<String> get keys => _keys;
+
+//   AppModel() : _keys = ['', '', ''];
+
+//   void setKeys(List<String> k) {
+//     _keys = k;
+//     notifyListeners();
+//   }
+// }
 
 void main() => runApp(MyApp());
 
@@ -64,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: IconButton(
                   icon: const Icon(Icons.refresh),
                   onPressed: () {
-                    clear();
+                    clearKeyConfig();
                     setState(() => index = 0);
                   },
                 )),

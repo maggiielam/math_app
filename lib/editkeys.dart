@@ -75,6 +75,7 @@ class _EditKeysState extends State<EditKeys> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: saveData,
+        splashColor: Colors.red,
         child: const Icon(Icons.save),
       ),
     );
