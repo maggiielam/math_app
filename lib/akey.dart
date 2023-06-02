@@ -56,7 +56,7 @@ class AKey extends StatelessWidget {
         primary: color,
       ),
       onPressed: () {
-        keyFunct(int.parse(keyValue));
+        keyFunct(context, int.parse(keyValue));
       },
       child: Text(keyFace),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keyboard_01/keyfunct.dart';
 import 'package:provider/provider.dart';
 
 import 'default.dart';
@@ -45,6 +46,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var index = 0;
+
   @override
   Widget build(BuildContext context) {
     Widget page = const Default();
@@ -86,7 +88,22 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       // etiher the default page or the edit page
-      body: page,
+      body: ChangeNotifierProvider(
+          create: (context) => TextFieldModel(), child: page),
     );
+  }
+}
+
+class TextFieldModel extends ChangeNotifier {
+  List<String> equations = [];
+
+  void setEquations(List<String> newEquations) {
+    equations = newEquations;
+    notifyListeners();
+  }
+
+  Future<void> loadEquations() async {
+    equations = await getEQ();
+    notifyListeners();
   }
 }

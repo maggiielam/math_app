@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'globals.dart' as gs;
 
-keyFunct(int x) async {
+keyFunct(BuildContext context, int x) async {
   String ky = gs.keys[x];
   List<String> eq = await getEQ();
   if (x == 14) {
@@ -26,6 +28,7 @@ keyFunct(int x) async {
     eq[0] += ky;
   }
   saveEQ(eq);
+  Provider.of<TextFieldModel>(context, listen: false).setEquations(eq);
 }
 
 void saveTF(List<String> tf) async {

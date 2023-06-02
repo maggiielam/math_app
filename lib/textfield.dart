@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'main.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'keyfunct.dart';
 
@@ -36,30 +38,36 @@ class _TextfieldState extends State<Textfield> {
   Widget build(BuildContext context) {
     return _isLoading
         ? const Center(child: CircularProgressIndicator())
-        : Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-                // SizedBox(height: 60,),
-                Container(
+        : Consumer<TextFieldModel>(
+            builder: (context, model, _) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  // ...
+                  Container(
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerRight,
-                    child: Math.tex(eq[2],
+                    child: Math.tex(model.equations[2],
                         mathStyle: MathStyle.display,
-                        textStyle: TextStyle(fontSize: 40))),
-
-                Container(
+                        textStyle: TextStyle(fontSize: 40)),
+                  ),
+                  Container(
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerRight,
-                    child: Math.tex(eq[1],
+                    child: Math.tex(model.equations[1],
                         mathStyle: MathStyle.display,
-                        textStyle: TextStyle(fontSize: 40))),
-
-                Container(
+                        textStyle: TextStyle(fontSize: 40)),
+                  ),
+                  Container(
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerRight,
-                    child: Math.tex(eq[0],
+                    child: Math.tex(model.equations[0],
                         mathStyle: MathStyle.display,
-                        textStyle: TextStyle(fontSize: 40))),
-              ]);
+                        textStyle: TextStyle(fontSize: 40)),
+                  ),
+                ],
+              );
+            },
+          );
   }
 }
