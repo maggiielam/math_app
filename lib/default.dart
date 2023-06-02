@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Keyboard.dart';
-import 'Input.dart';
+import 'keyboard.dart';
+import 'input.dart';
 
 class Default extends StatelessWidget {
   ///
